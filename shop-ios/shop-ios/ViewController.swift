@@ -165,6 +165,13 @@ class ViewController: UIViewController {
         transaction.order = order;
         transaction.settings = settings;
         
+        // Wallet
+        var features = SynapFeatures()
+        var wallet = SynapWallet()
+        wallet.userIdentifier = customer.email
+        features.wallet = wallet
+        transaction.features = features
+        
         return transaction;
     }
     

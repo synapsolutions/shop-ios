@@ -8,9 +8,17 @@
 		<data>
 		/Co+BtpKpELh3eLRB9ctKnWfWvk=
 		</data>
+		<key>CardCarouselView.nib</key>
+		<data>
+		FbeC5UsteWxK3Pswyi57Gi9j1Ww=
+		</data>
+		<key>CardFormView.nib</key>
+		<data>
+		V7OFqMLWxraImUTSS7Z46FYGFMg=
+		</data>
 		<key>Headers/SynapPay-Swift.h</key>
 		<data>
-		vFw1hmc9gwBM249CtG/wGEVk9+c=
+		qZQzYEeuEi1p3AlBwnMPbwfLd2s=
 		</data>
 		<key>Headers/payment_button_ios.h</key>
 		<data>
@@ -26,15 +34,11 @@
 		</data>
 		<key>Modules/SynapPay.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		olwI0cNM+ecWHyYu111KMmRUhWg=
+		i3hOmFhyLrZIV8iYNnRCWJMop/8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		GAnWmmeObY+j7iX6GQq3jHl08eM=
-		</data>
-		<key>PayButtonView.nib</key>
-		<data>
-		brmei8TSYNIdVW1RKv0fp2WzTcw=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -46,11 +50,25 @@
 			cfqlZFjQF1l9fu3liyJo+KVn1xYK8044j8sK6rnTeoI=
 			</data>
 		</dict>
+		<key>CardCarouselView.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			uBLV7KdhJWUmGG1EjNH2NoZ3IvaULW0rMEq3qTGW2Z8=
+			</data>
+		</dict>
+		<key>CardFormView.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			89jE7uZUMRvSOD0SA6y1Q5n3UfkWzjvNXdbh0CxV1ek=
+			</data>
+		</dict>
 		<key>Headers/SynapPay-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/fHOoQqzV3vP/cc3uFtSyse1DJJq+zIZ4N/iy3fBwIY=
+			v2avW4n1G4oqrtCAholhmY8SHU9n852Xw77v3fQV3Y4=
 			</data>
 		</dict>
 		<key>Headers/payment_button_ios.h</key>
@@ -71,7 +89,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VL91HFzXXzML+ZiRO0m4lIuYpLPlx0XWlJ4er7YrM5Y=
+			V2QNBHt5xtVCTStfY7i2sUD1OK8owF1C7NtlXpJq3H8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -79,13 +97,6 @@
 			<key>hash2</key>
 			<data>
 			cUqaH/wiDixZGTSINCgm6dcrA0ikJZkT/z+hQ/JQkRM=
-			</data>
-		</dict>
-		<key>PayButtonView.nib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			sBgnj6+rVEcSJPVYwdsMrn/yPDTIJv4bpAD5EofgxlY=
 			</data>
 		</dict>
 	</dict>
