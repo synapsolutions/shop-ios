@@ -117,7 +117,7 @@ class ViewController: UIViewController {
         customer.name = "Julio"
         customer.lastName = "Molina"
         customer.address = customerAddress
-        customer.email = "julio.molina@synapsolutions.com"
+        customer.email = "javier.perez@synapsolutions.com"
         customer.phone = "999888777"
         customer.document = customerDocument
         
