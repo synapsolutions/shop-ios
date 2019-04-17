@@ -6,15 +6,15 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		/Co+BtpKpELh3eLRB9ctKnWfWvk=
+		NSVY2GPyb2FGJTf8K4TFf3NNgBs=
 		</data>
 		<key>CardCarouselView.nib</key>
 		<data>
-		FbeC5UsteWxK3Pswyi57Gi9j1Ww=
+		y7rIhNa96UIHnMUM+TEytu5oeM0=
 		</data>
 		<key>CardFormView.nib</key>
 		<data>
-		V7OFqMLWxraImUTSS7Z46FYGFMg=
+		O6CkeOdm37MviW7j6shOvhQjiO4=
 		</data>
 		<key>Headers/SynapPay-Swift.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		YFcP1fqagEmN9fUEDQKNKTIs4Lw=
+		GajY8E4Cx5udUxxI0M9CkgSLhio=
 		</data>
 		<key>Modules/SynapPay.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Modules/SynapPay.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		i3hOmFhyLrZIV8iYNnRCWJMop/8=
+		OQdcCWeob4qxs8U6mQz0jPpRsnI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,21 +47,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cfqlZFjQF1l9fu3liyJo+KVn1xYK8044j8sK6rnTeoI=
+			x4y4HN45+aOzjoJE3i54CHrNHNDUFVLTaxbzAcfHr9g=
 			</data>
 		</dict>
 		<key>CardCarouselView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uBLV7KdhJWUmGG1EjNH2NoZ3IvaULW0rMEq3qTGW2Z8=
+			eem2XarpldAmrNKGzv4M6KWSzG5n7c//Hr0qgvxFpd4=
 			</data>
 		</dict>
 		<key>CardFormView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			89jE7uZUMRvSOD0SA6y1Q5n3UfkWzjvNXdbh0CxV1ek=
+			MatIkJExDsC5l1gzgbf+406eBoc28tXE7Pr/WlU5hGA=
 			</data>
 		</dict>
 		<key>Headers/SynapPay-Swift.h</key>
@@ -89,7 +89,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			V2QNBHt5xtVCTStfY7i2sUD1OK8owF1C7NtlXpJq3H8=
+			RabVarJtnB/QsbGGnb70Gr/2S++yEceNsZivjUSnZjI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

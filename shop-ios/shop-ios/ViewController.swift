@@ -8,9 +8,10 @@
 
 import UIKit
 import SynapPay
+import CommonCrypto
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var synapFormContainer: UIView!
     @IBOutlet weak var synapForm: UIView!
     @IBOutlet weak var synapButton: UIButton!
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
         // Oculte el contenedor principal, hasta que la acción de apertura sea ejecutada
         self.synapFormContainer.isHidden = true
     }
-
+    
     @IBAction func startPayment(_ sender: Any) {
         // Muestre el contenedor principal
         self.synapFormContainer.isHidden = false
@@ -31,13 +32,14 @@ class ViewController: UIViewController {
         
         // Seteo del ambiente ".sandbox" o ".production"
         SynapPayButton.setEnvironment(.development)
-        
+        let transaction=self.buildTransaction()
+        let authenticator=self.buildAuthentication(transaction)
         self.paymentForm.configure(
             // Seteo de los campos de autenticación de seguridad
-            authenticator: self.setAuthentication(),
+            authenticator: authenticator,
             
             // Seteo de los campos de la transacción
-            transaction: self.setTransaction(),
+            transaction: transaction,
             
             // Manejo de los campos de respuesta
             success: {
@@ -56,30 +58,56 @@ class ViewController: UIViewController {
                     // Agregue el código según la experiencia del cliente para un error
                     self.showMessage(message: resultMessage!)
                 }
-            },
+        },
             failed: {
                 (response) in
                 let messageText = response.message!.text!
                 // Agregue el código de la experiencia que desee visualizar en un error
                 self.showMessage(message: messageText)
-            }
+        }
         )
     }
     
-    func setAuthentication() -> SynapAuthenticator{
+    func buildAuthentication(_ transaction: SynapTransaction) -> SynapAuthenticator{
+        
+        let identifier="4779d88b-bc30-481b-bb2b-a2a21d60fdf1"
+        let sigantureKey="zY6vkX7#E81C+9z6X1_pzz*hOx!g+DAp"
+        // Solo se utiliza con proposito de demostrar la funcionalidad, no se recomienda generar la firma desde la UI
+        let signature=generateSignature(transaction: transaction, identifier: identifier, signatureKey: sigantureKey)
         // Referencie el objeto de autenticación
         var authenticator = SynapAuthenticator()
         
         // Seteo de identificador con el APIKey del comercio
-        authenticator.identifier = "4"
+        authenticator.identifier = identifier
         
         // La firma se debe generar en el servidor del comercio utilizando la función criptográfica SHA-512
         // La firma permite verificar la integridad de la transacción
-        authenticator.signature = "8A9F904FF3B689CFB587B7D2A3B347B2204C9029FC7D9FF64101715BD65E9F4A5E2663A38F20D66005AB0274B070F4221B48BF4B570828ADD44121293EC2C532"
+        authenticator.signature = signature
         return authenticator
     }
     
-    func setTransaction() -> SynapTransaction{
+    // Solo se utiliza con proposito de demostrar la funcionalidad, no se recomienda generar la firma desde la UI
+    private func generateSignature(transaction: SynapTransaction, identifier: String, signatureKey: String) -> String{
+        
+        let orderNumber=transaction.order!.number!
+        let currencyCode=transaction.order!.currency!.code!
+        let amount=transaction.order!.amount!
+        
+        let rawSignature=identifier+orderNumber+currencyCode+amount+signatureKey
+        let signature=sha512Hex(rawSignature)
+        return signature
+    }
+    
+    func sha512Hex(_ value: String) -> String {
+        let data = value.data(using: .utf8)!
+        var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
+        data.withUnsafeBytes({
+            _ = CC_SHA512($0, CC_LONG(data.count), &digest)
+        })
+        return digest.map({ String(format: "%02hhx", $0) }).joined(separator: "")
+    }
+    
+    func buildTransaction() -> SynapTransaction{
         // Genere el número de orden
         let number = String(getCurrentMillis());
         
@@ -167,9 +195,9 @@ class ViewController: UIViewController {
         
         // Wallet
         var features = SynapFeatures()
-        var wallet = SynapWallet()
-        wallet.userIdentifier = customer.email
-        features.wallet = wallet
+        var cardStorage = SynapCardStorage()
+        cardStorage.userIdentifier = "javier.perez@synapsolutions.com"
+        features.cardStorage = cardStorage
         transaction.features = features
         
         return transaction;
