@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         self.paymentForm = SynapPayButton.create(view: self.synapForm)
         
         // Seteo del ambiente ".sandbox" o ".production"
-        SynapPayButton.setEnvironment(.development)
+        SynapPayButton.setEnvironment(.sandbox)
         let transaction=self.buildTransaction()
         let authenticator=self.buildAuthentication(transaction)
         self.paymentForm.configure(
@@ -64,47 +64,29 @@ class ViewController: UIViewController {
                 let messageText = response.message!.text!
                 // Agregue el código de la experiencia que desee visualizar en un error
                 self.showMessage(message: messageText)
-        }
+            }
         )
     }
     
     func buildAuthentication(_ transaction: SynapTransaction) -> SynapAuthenticator{
+        let identifier = "4779d88b-bc30-481b-bb2b-a2a21d60fdf1"
         
-        let identifier="4779d88b-bc30-481b-bb2b-a2a21d60fdf1"
-        let sigantureKey="zY6vkX7#E81C+9z6X1_pzz*hOx!g+DAp"
-        // Solo se utiliza con proposito de demostrar la funcionalidad, no se recomienda generar la firma desde la UI
-        let signature=generateSignature(transaction: transaction, identifier: identifier, signatureKey: sigantureKey)
+        // La signatureKey y la función de generación de firma debe usarse e implementarse en el servidor del comercio utilizando la función criptográfica SHA-512
+        // solo con propósito de demostrar la funcionalidad, se implementará en el ejemplo
+        // (bajo ninguna circunstancia debe exponerse la signatureKey y la función de firma desde la aplicación porque compromete la seguridad)
+        let signatureKey = "zY6vkX7#E81C+9z6X1_pzz*hOx!g+DAp"
+        let signature = generateSignature(transaction: transaction, identifier: identifier, signatureKey: signatureKey)
+        
         // Referencie el objeto de autenticación
         var authenticator = SynapAuthenticator()
         
-        // Seteo de identificador con el APIKey del comercio
+        // Seteo de identificador del comercio
         authenticator.identifier = identifier
         
-        // La firma se debe generar en el servidor del comercio utilizando la función criptográfica SHA-512
-        // La firma permite verificar la integridad de la transacción
+        // Seteo de firma, que permite verificar la integridad de la transacción
         authenticator.signature = signature
+        
         return authenticator
-    }
-    
-    // Solo se utiliza con proposito de demostrar la funcionalidad, no se recomienda generar la firma desde la UI
-    private func generateSignature(transaction: SynapTransaction, identifier: String, signatureKey: String) -> String{
-        
-        let orderNumber=transaction.order!.number!
-        let currencyCode=transaction.order!.currency!.code!
-        let amount=transaction.order!.amount!
-        
-        let rawSignature=identifier+orderNumber+currencyCode+amount+signatureKey
-        let signature=sha512Hex(rawSignature)
-        return signature
-    }
-    
-    func sha512Hex(_ value: String) -> String {
-        let data = value.data(using: .utf8)!
-        var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
-        data.withUnsafeBytes({
-            _ = CC_SHA512($0, CC_LONG(data.count), &digest)
-        })
-        return digest.map({ String(format: "%02hhx", $0) }).joined(separator: "")
     }
     
     func buildTransaction() -> SynapTransaction{
@@ -179,7 +161,8 @@ class ViewController: UIViewController {
         order.customer = customer
         order.shipping = shipping
         order.billing = billing
-        
+        synapButton.titleLabel?.text = "Pagar " + order.currency!.symbol! + order.amount!
+
         // Referencie al objeto configuración
         var settings = SynapSettings();
         // Seteo de los datos de configuración
@@ -221,5 +204,29 @@ class ViewController: UIViewController {
             self.present(alertMessage, animated: true, completion: nil)
         }
     }
+    
+    // La signatureKey y la función de generación de firma debe usarse e implementarse en el servidor del comercio utilizando la función criptográfica SHA-512
+    // solo con propósito de demostrar la funcionalidad, se implementará en el ejemplo
+    // (bajo ninguna circunstancia debe exponerse la signatureKey y la función de firma desde la aplicación porque compromete la seguridad)
+    private func generateSignature(transaction: SynapTransaction, identifier: String, signatureKey: String) -> String{
+        
+        let orderNumber = transaction.order!.number!
+        let currencyCode = transaction.order!.currency!.code!
+        let amount = transaction.order!.amount!
+        
+        let rawSignature = identifier + orderNumber + currencyCode + amount + signatureKey
+        let signature = sha512Hex(rawSignature)
+        return signature
+    }
+    
+    func sha512Hex(_ value: String) -> String {
+        let data = value.data(using: .utf8)!
+        var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
+        data.withUnsafeBytes({
+            _ = CC_SHA512($0, CC_LONG(data.count), &digest)
+        })
+        return digest.map({ String(format: "%02hhx", $0) }).joined(separator: "")
+    }
+
 }
 
