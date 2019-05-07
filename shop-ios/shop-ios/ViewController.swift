@@ -162,6 +162,7 @@ class ViewController: UIViewController {
         order.customer = customer
         order.shipping = shipping
         order.billing = billing
+        // Imprime monto a pagar en el botón de pago
         synapButton.setTitle("Pagar " + order.currency!.symbol! + order.amount!, for: .normal)
 
         // Referencie al objeto configuración
@@ -200,7 +201,8 @@ class ViewController: UIViewController {
     func showMessage(message:String){
         DispatchQueue.main.async {
             let alertMessage = UIAlertController(title: "", message: message, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
+            // Finaliza el intento de pago y regresa al inicio, el comercio define la experiencia del cliente
+            let cancelAction = UIAlertAction(title: "Ok", style: .cancel, handler: { action in self.viewDidLoad()})
             alertMessage.addAction(cancelAction)
             self.present(alertMessage, animated: true, completion: nil)
         }
