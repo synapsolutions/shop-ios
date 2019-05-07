@@ -102,6 +102,7 @@ class ViewController: UIViewController {
         var currency = SynapCurrency()
         // Seteo del código de moneda en la que se procesará la transacción
         currency.code = "PEN"
+        currency.symbol = "S/"
         
         // Referencie al objeto cliente
         var customer = SynapPerson()
@@ -161,7 +162,7 @@ class ViewController: UIViewController {
         order.customer = customer
         order.shipping = shipping
         order.billing = billing
-        synapButton.titleLabel?.text = "Pagar " + order.currency!.symbol! + order.amount!
+        synapButton.setTitle("Pagar " + order.currency!.symbol! + order.amount!, for: .normal)
 
         // Referencie al objeto configuración
         var settings = SynapSettings();
