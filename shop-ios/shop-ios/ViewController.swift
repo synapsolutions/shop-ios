@@ -7,28 +7,34 @@
 //
 
 import UIKit
-import SynapPay
 import CommonCrypto
+import SynapPay
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var synapFormContainer: UIView!
+    var paymentWidget: SynapPayButton!
     @IBOutlet weak var synapForm: UIView!
     @IBOutlet weak var synapButton: UIButton!
-    var paymentForm: SynapPayButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Oculte el contenedor principal, hasta que se ejecute la acción de apertura
-        self.synapFormContainer.isHidden = true
+
+        // Oculte el contenedor del formulario de pago (View), hasta que se ejecute la acción de continuar al pago
+        self.synapForm.isHidden = true
+        
+        // Oculte el botón de pago (Button), hasta que se ejecute la acción de continuar al pago
+        self.synapButton.isHidden = true
     }
     
     @IBAction func startPayment(_ sender: Any) {
-        // Muestre el contenedor principal
-        self.synapFormContainer.isHidden = false
+        // Muestre el contenedor del formulario de pago
+        self.synapForm.isHidden = false
+
+        // Muestre el botón de pago
+        self.synapButton.isHidden = false
         
         // Crea el objeto del widget de pago
-        self.paymentForm = SynapPayButton.create(view: self.synapForm)
+        self.paymentWidget = SynapPayButton.create(view: self.synapForm)
         
         // Seteo del ambiente ".sandbox" o ".production"
         SynapPayButton.setEnvironment(.sandbox)
@@ -37,9 +43,9 @@ class ViewController: UIViewController {
         let transaction=self.buildTransaction()
         
         // Seteo de los campos de autenticación de seguridad
-        let authenticator=self.buildAuthentication(transaction)
+        let authenticator=self.buildAuthenticator(transaction)
         
-        self.paymentForm.configure(
+        self.paymentWidget.configure(
             // Seteo de autenticación de seguridad y transacción
             authenticator: authenticator,
             transaction: transaction,
@@ -47,21 +53,17 @@ class ViewController: UIViewController {
             // Manejo de la respuesta
             success: {
                 (response) in
-                let resultCode = response.result!.code
+                let resultAccepted = response.result!.accepted
                 let resultMessage = response.result!.message
-                if (resultCode == "AUTHORIZED") {
+                if (resultAccepted!) {
                     // Agregue el código según la experiencia del cliente para la autorización
                     self.showMessage(message: resultMessage!)
                 }
-                else if (resultCode == "DENIED") {
+                else {
                     // Agregue el código según la experiencia del cliente para la denegación
                     self.showMessage(message: resultMessage!)
                 }
-                else {
-                    // Agregue el código según la experiencia del cliente para un error
-                    self.showMessage(message: resultMessage!)
-                }
-        },
+            },
             failed: {
                 (response) in
                 let messageText = response.message!.text!
@@ -85,7 +87,6 @@ class ViewController: UIViewController {
         var currency = SynapCurrency()
         // Seteo del código de moneda
         currency.code = "PEN"
-//        currency.symbol = "S/"
         
         //Seteo del monto
         let amount = "1.00"
@@ -150,13 +151,10 @@ class ViewController: UIViewController {
         order.shipping = shipping
         order.billing = billing
 
-//        Imprime monto a pagar en el botón de pago
-//        synapButton.setTitle("Pagar " + order.currency!.symbol! + order.amount!, for: .normal)
-
         // Referencie al objeto configuración
         var settings = SynapSettings();
         // Seteo de los datos de configuración
-        settings.brands = ["VISA","MSCD"];
+        settings.brands = ["VISA","MSCD","AMEX","DINC"];
         settings.language = "es_PE";
         settings.businessService = "MOB";
         
@@ -166,7 +164,7 @@ class ViewController: UIViewController {
         transaction.order = order;
         transaction.settings = settings;
         
-        // Wallet
+        // Feature Card-Storage (Recordar Tarjeta)
         var features = SynapFeatures()
         var cardStorage = SynapCardStorage()
         cardStorage.userIdentifier = "javier.perez@synapsolutions.com"
@@ -176,7 +174,7 @@ class ViewController: UIViewController {
         return transaction;
     }
     
-    func buildAuthentication(_ transaction: SynapTransaction) -> SynapAuthenticator{
+    func buildAuthenticator(_ transaction: SynapTransaction) -> SynapAuthenticator{
         let apiKey = "98230cbf-b814-4300-bb38-8c093bed72f6" //"4779d88b-bc30-481b-bb2b-a2a21d60fdf1"
         
         // La signatureKey y la función de generación de firma debe usarse e implementarse en el servidor del comercio utilizando la función criptográfica SHA-512
@@ -198,7 +196,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func synapActionPay(_ sender: Any) {
-        self.paymentForm.pay()
+        self.paymentWidget.pay()
     }
     
     // Genera número de orden
@@ -230,6 +228,7 @@ class ViewController: UIViewController {
         return signature
     }
     
+    //Genera la firma digital sha512
     func sha512Hex(_ value: String) -> String {
         let data = value.data(using: .utf8)!
         var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
