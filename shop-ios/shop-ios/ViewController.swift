@@ -7,53 +7,65 @@
 //
 
 import UIKit
+import CommonCrypto
 import SynapPay
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var synapFormContainer: UIView!
+    
+    var paymentWidget: SynapPayButton!
     @IBOutlet weak var synapForm: UIView!
     @IBOutlet weak var synapButton: UIButton!
-    var paymentForm: SynapPayButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Oculte el contenedor principal, hasta que la acción de apertura sea ejecutada
-        self.synapFormContainer.isHidden = true
-    }
 
+        // Oculte el contenedor del formulario de pago (View), hasta que se ejecute la acción de continuar al pago
+        self.synapForm.isHidden = true
+        
+        // Oculte el botón de pago (Button), hasta que se ejecute la acción de continuar al pago
+        self.synapButton.isHidden = true
+    }
+    
     @IBAction func startPayment(_ sender: Any) {
-        // Muestre el contenedor principal
-        self.synapFormContainer.isHidden = false
+        // Muestre el contenedor del formulario de pago
+        self.synapForm.isHidden = false
+
+        // Muestre el botón de pago
+        self.synapButton.isHidden = false
         
         // Crea el objeto del widget de pago
-        self.paymentForm = SynapPayButton.create(view: self.synapForm)
+        self.paymentWidget = SynapPayButton.create(view: self.synapForm)
+        
+        // Tema de fondo en la tarjeta (Light o Dark)
+        let theme = SynapLightTheme() // Fondo Light con controles dark
+        //let theme = SynapDarkTheme() // Fondo Dark con controles light
+        SynapPayButton.setTheme(theme)
         
         // Seteo del ambiente ".sandbox" o ".production"
-        SynapPayButton.setEnvironment(.development)
+        SynapPayButton.setEnvironment(.sandbox)
         
-        self.paymentForm.configure(
-            // Seteo de los campos de autenticación de seguridad
-            authenticator: self.setAuthentication(),
+        // Seteo de los campos de transacción
+        let transaction=self.buildTransaction()
+        
+        // Seteo de los campos de autenticación de seguridad
+        let authenticator=self.buildAuthenticator(transaction)
+        
+        self.paymentWidget.configure(
+            // Seteo de autenticación de seguridad y transacción
+            authenticator: authenticator,
+            transaction: transaction,
             
-            // Seteo de los campos de la transacción
-            transaction: self.setTransaction(),
-            
-            // Manejo de los campos de respuesta
+            // Manejo de la respuesta
             success: {
                 (response) in
-                let resultCode = response.result!.code
+                let resultAccepted = response.result!.accepted
                 let resultMessage = response.result!.message
-                if (resultCode == "AUTHORIZED") {
+                if (resultAccepted!) {
                     // Agregue el código según la experiencia del cliente para la autorización
                     self.showMessage(message: resultMessage!)
                 }
-                else if (resultCode == "DENIED") {
-                    // Agregue el código según la experiencia del cliente para la denegación
-                    self.showMessage(message: resultMessage!)
-                }
                 else {
-                    // Agregue el código según la experiencia del cliente para un error
+                    // Agregue el código según la experiencia del cliente para la denegación
                     self.showMessage(message: resultMessage!)
                 }
             },
@@ -66,59 +78,51 @@ class ViewController: UIViewController {
         )
     }
     
-    func setAuthentication() -> SynapAuthenticator{
-        // Referencie el objeto de autenticación
-        var authenticator = SynapAuthenticator()
-        
-        // Seteo de identificador con el APIKey del comercio
-        authenticator.identifier = "4"
-        
-        // La firma se debe generar en el servidor del comercio utilizando la función criptográfica SHA-512
-        // La firma permite verificar la integridad de la transacción
-        authenticator.signature = "8A9F904FF3B689CFB587B7D2A3B347B2204C9029FC7D9FF64101715BD65E9F4A5E2663A38F20D66005AB0274B070F4221B48BF4B570828ADD44121293EC2C532"
-        return authenticator
-    }
-    
-    func setTransaction() -> SynapTransaction{
-        // Genere el número de orden
+    func buildTransaction() -> SynapTransaction{
+        // Genere el número de orden, este es solo un ejemplo
         let number = String(getCurrentMillis());
         
+        // Seteo de los datos de transacción
         // Referencie al objeto país
         var country = SynapCountry()
-        // Seteo del código de país donde se procesará la transacción
+        // Seteo del código de país
         country.code = "PER"
-        
+
         // Referencie al objeto moneda
         var currency = SynapCurrency()
-        // Seteo del código de moneda en la que se procesará la transacción
+        // Seteo del código de moneda
         currency.code = "PEN"
+        
+        //Seteo del monto
+        let amount = "1.00"
         
         // Referencie al objeto cliente
         var customer = SynapPerson()
-        
-        // Referencie al objeto documento del cliente
-        var customerDocument = SynapDocument()
-        // Seteo del tipo y número de documento
-        customerDocument.type = "DNI"
-        customerDocument.number = "44556677"
-        
+        // Seteo del cliente
+        customer.name = "Javier"
+        customer.lastName = "Pérez"
+
         // Referencie al objeto dirección del cliente
         var customerAddress = SynapAddress()
-        // Seteo del pais, departamento (levels[0]), provincia (levels[1]) , distrito (levels[2]), dirección y zip del cliente
+        // Seteo del pais (country), niveles de ubicación geográfica (levels), dirección (line1 y line2) y código postal (zip)
         customerAddress.country = "PER"
         customerAddress.levels = [String]()
         customerAddress.levels?.append("150000")
         customerAddress.levels?.append("150100")
         customerAddress.levels?.append("150101")
         customerAddress.line1 = "Ca Carlos Ferreyros 180"
-        customerAddress.zip = "051014"
-        
-        // Seteo de nombre, apellido, dirección, email, teléfono y documento del cliente
-        customer.name = "Julio"
-        customer.lastName = "Molina"
+        customerAddress.zip = "15036"
         customer.address = customerAddress
+        
+        // Seteo del email y teléfono
         customer.email = "javier.perez@synapsolutions.com"
         customer.phone = "999888777"
+
+        // Referencie al objeto documento del cliente
+        var customerDocument = SynapDocument()
+        // Seteo del tipo y número de documento
+        customerDocument.type = "DNI"
+        customerDocument.number = "44556677"
         customer.document = customerDocument
         
         // Seteo de los datos de envío
@@ -130,7 +134,7 @@ class ViewController: UIViewController {
         var productItem = SynapProduct()
         // Seteo de los datos de producto
         productItem.code = "123"
-        productItem.name = "Producto prueba"
+        productItem.name = "Llavero"
         productItem.quantity = "1"
         productItem.unitAmount = "1.00"
         productItem.amount = "1.00"
@@ -143,19 +147,19 @@ class ViewController: UIViewController {
         // Referencie al objeto orden
         var order = SynapOrder();
         // Seteo de los datos de orden
-        order.number = number;
-        order.amount = "11.00"
+        order.number = number
+        order.amount = amount
         order.country = country
         order.currency = currency
         order.products = products
         order.customer = customer
         order.shipping = shipping
         order.billing = billing
-        
+
         // Referencie al objeto configuración
         var settings = SynapSettings();
         // Seteo de los datos de configuración
-        settings.brands = ["VISA","MSCD"];
+        settings.brands = ["VISA","MSCD","AMEX","DINC"];
         settings.language = "es_PE";
         settings.businessService = "MOB";
         
@@ -165,18 +169,39 @@ class ViewController: UIViewController {
         transaction.order = order;
         transaction.settings = settings;
         
-        // Wallet
+        // Feature Card-Storage (Recordar Tarjeta)
         var features = SynapFeatures()
-        var wallet = SynapWallet()
-        wallet.userIdentifier = customer.email
-        features.wallet = wallet
+        var cardStorage = SynapCardStorage()
+        cardStorage.userIdentifier = "javier.perez@synapsolutions.com"
+        features.cardStorage = cardStorage
         transaction.features = features
         
         return transaction;
     }
     
+    func buildAuthenticator(_ transaction: SynapTransaction) -> SynapAuthenticator{
+        let apiKey = "98230cbf-b814-4300-bb38-8c093bed72f6" //"4779d88b-bc30-481b-bb2b-a2a21d60fdf1"
+        
+        // La signatureKey y la función de generación de firma debe usarse e implementarse en el servidor del comercio utilizando la función criptográfica SHA-512
+        // solo con propósito de demostrar la funcionalidad, se implementará en el ejemplo
+        // (bajo ninguna circunstancia debe exponerse la signatureKey y la función de firma desde la aplicación porque compromete la seguridad)
+        let signatureKey = "ibYl^ykGojrIWAGO*u=KaMv-6dOyYR&U"
+        let signature = generateSignature(transaction: transaction, apiKey: apiKey, signatureKey: signatureKey)
+        
+        // Referencie el objeto de autenticación
+        var authenticator = SynapAuthenticator()
+        
+        // Seteo de identificador del comercio (apiKey)
+        authenticator.identifier = apiKey
+        
+        // Seteo de firma, que permite verificar la integridad de la transacción
+        authenticator.signature = signature
+        
+        return authenticator
+    }
+    
     @IBAction func synapActionPay(_ sender: Any) {
-        self.paymentForm.pay()
+        self.paymentWidget.pay()
     }
     
     // Genera número de orden
@@ -188,10 +213,35 @@ class ViewController: UIViewController {
     func showMessage(message:String){
         DispatchQueue.main.async {
             let alertMessage = UIAlertController(title: "", message: message, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
+            // Finaliza el intento de pago y regresa al inicio, el comercio define la experiencia del cliente
+            let cancelAction = UIAlertAction(title: "Ok", style: .cancel, handler: { action in self.viewDidLoad()})
             alertMessage.addAction(cancelAction)
             self.present(alertMessage, animated: true, completion: nil)
         }
     }
+    
+    // La signatureKey y la función de generación de firma debe usarse e implementarse en el servidor del comercio utilizando la función criptográfica SHA-512
+    // solo con propósito de demostrar la funcionalidad, se implementará en el ejemplo
+    // (bajo ninguna circunstancia debe exponerse la signatureKey y la función de firma desde la aplicación porque compromete la seguridad)
+    private func generateSignature(transaction: SynapTransaction, apiKey: String, signatureKey: String) -> String{
+        let orderNumber = transaction.order!.number!
+        let currencyCode = transaction.order!.currency!.code!
+        let amount = transaction.order!.amount!
+        
+        let rawSignature = apiKey + orderNumber + currencyCode + amount + signatureKey
+        let signature = sha512Hex(rawSignature)
+        return signature
+    }
+    
+    //Genera la firma digital sha512
+    func sha512Hex(_ value: String) -> String {
+        let data = value.data(using: .utf8)!
+        var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
+        data.withUnsafeBytes({
+            _ = CC_SHA512($0, CC_LONG(data.count), &digest)
+        })
+        return digest.map({ String(format: "%02hhx", $0) }).joined(separator: "")
+    }
+
 }
 

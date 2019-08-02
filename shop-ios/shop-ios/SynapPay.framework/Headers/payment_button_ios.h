@@ -3,7 +3,7 @@
 //  payment-button-ios
 //
 //  Created by Julio Molina on 3/12/19.
-//  Copyright © 2019 Julio Molina. All rights reserved.
+//  Copyright © 2019 Synap Solutions. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

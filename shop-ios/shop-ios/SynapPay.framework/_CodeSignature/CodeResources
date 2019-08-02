@@ -6,35 +6,35 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		/Co+BtpKpELh3eLRB9ctKnWfWvk=
+		2/LJFF50V221GIfd4Yp1meXmNPo=
 		</data>
 		<key>CardCarouselView.nib</key>
 		<data>
-		FbeC5UsteWxK3Pswyi57Gi9j1Ww=
+		IBHhZp0OpKvyYimF1iCu9nX32kA=
 		</data>
 		<key>CardFormView.nib</key>
 		<data>
-		V7OFqMLWxraImUTSS7Z46FYGFMg=
+		qkdnTkrXs4unAj4JzF+u/O/lJ54=
 		</data>
 		<key>Headers/SynapPay-Swift.h</key>
 		<data>
-		qZQzYEeuEi1p3AlBwnMPbwfLd2s=
+		SIk2rhQkgpStExkCQ0NYURcpmUo=
 		</data>
 		<key>Headers/payment_button_ios.h</key>
 		<data>
-		po05u5htijd/5PM5DB0V0TLy3W8=
+		meiLz/Sf1PwsfFQPx8MvDBdreVA=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		YFcP1fqagEmN9fUEDQKNKTIs4Lw=
+		+/pXVsrAweYQmrFjnR+AgDDpX3U=
 		</data>
 		<key>Modules/SynapPay.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		OSz899a41lKA63YffJ+on8SWcs8=
+		83gBIZ03mf+V0iR5DnolLk9wdQE=
 		</data>
 		<key>Modules/SynapPay.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		i3hOmFhyLrZIV8iYNnRCWJMop/8=
+		QQU8RpC7RXwNha7+lU5LltasMTI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,49 +47,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cfqlZFjQF1l9fu3liyJo+KVn1xYK8044j8sK6rnTeoI=
+			IuS6/jEJYrd05/nyJeb54ZOO2tptYZi+RkYzt/XnrbY=
 			</data>
 		</dict>
 		<key>CardCarouselView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uBLV7KdhJWUmGG1EjNH2NoZ3IvaULW0rMEq3qTGW2Z8=
+			ybjms7lLdWLinasy+S30Yc8TJw+eORtaih+s2fQ64cs=
 			</data>
 		</dict>
 		<key>CardFormView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			89jE7uZUMRvSOD0SA6y1Q5n3UfkWzjvNXdbh0CxV1ek=
+			SO9maRhFuOl8KX3pUkbiFORlHoFy3Wi5A2mcfWpj4o0=
 			</data>
 		</dict>
 		<key>Headers/SynapPay-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			v2avW4n1G4oqrtCAholhmY8SHU9n852Xw77v3fQV3Y4=
+			rgH6bmRjX6rf8tOUpcjay45OU+Mrk3FUT8EwhU4Ufgo=
 			</data>
 		</dict>
 		<key>Headers/payment_button_ios.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yycogOgBWhB6ukap8OP3Zdp24vvtxlDf9mpKBPDqfmw=
+			AiltAbt0D8FKxPQ+NmYT0UJI1WbvQSCVmBIdaUeIUXg=
 			</data>
 		</dict>
 		<key>Modules/SynapPay.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			W7l7e6LoiInHIoRKqTAu53IGPCA+Jd8KEAAUHuxfPwo=
+			uVXPXDzYiPBF81hgGB3huz0MVfn3w+VK/6jfUxVeHws=
 			</data>
 		</dict>
 		<key>Modules/SynapPay.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			V2QNBHt5xtVCTStfY7i2sUD1OK8owF1C7NtlXpJq3H8=
+			3/k0EPvuKraTelOrRH2Vx+QNoCcjS3wVmTOZ0wgPHm0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
