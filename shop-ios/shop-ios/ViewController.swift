@@ -36,11 +36,10 @@ class ViewController: UIViewController {
         // Crea el objeto del widget de pago
         self.paymentWidget = SynapPayButton.create(view: self.synapForm)
         
-        // Theme
-        //let theme = SynapLightTheme() // Fondo Claro default con controles oscuros
-        //let theme = SynapDarkTheme() // Fondo Oscuro deault con controles claros
-        let theme = SynapLightTheme(cardBackDrop: UIImage(named: "backAbaxto")!) // Fondo personalizado
-        self.paymentWidget.setTheme(theme)
+        // Tema de fondo en la tarjeta (Light o Dark)
+        let theme = SynapLightTheme() // Fondo Light con controles dark
+        //let theme = SynapDarkTheme() // Fondo Dark con controles light
+        SynapPayButton.setTheme(theme)
         
         // Seteo del ambiente ".sandbox" o ".production"
         SynapPayButton.setEnvironment(.sandbox)
