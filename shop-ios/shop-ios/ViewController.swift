@@ -50,6 +50,23 @@ class ViewController: UIViewController {
         // Seteo de los campos de autenticación de seguridad
         let authenticator=self.buildAuthenticator(transaction)
         
+        // Control de eventos en el formulario de pago
+        SynapPayButton.setListener(
+          listener:{
+            (event) in
+            switch(event){
+              case .startPay:
+                self.synapButton.isEnabled=false
+                break;
+              case .invalidCardForm:
+                self.synapButton.isEnabled=true
+                break;
+              case .validCardForm:
+                break;
+            }
+          }
+        )
+        
         self.paymentWidget.configure(
             // Seteo de autenticación de seguridad y transacción
             authenticator: authenticator,
@@ -67,6 +84,7 @@ class ViewController: UIViewController {
                 else {
                     // Agregue el código según la experiencia del cliente para la denegación
                     self.showMessage(message: resultMessage!)
+                    self.synapButton.isEnabled=true
                 }
             },
             failed: {
@@ -74,6 +92,7 @@ class ViewController: UIViewController {
                 let messageText = response.message!.text!
                 // Agregue el código de la experiencia que desee visualizar en un error
                 self.showMessage(message: messageText)
+                self.synapButton.isEnabled=true
             }
         )
     }
@@ -180,12 +199,12 @@ class ViewController: UIViewController {
     }
     
     func buildAuthenticator(_ transaction: SynapTransaction) -> SynapAuthenticator{
-        let apiKey = "98230cbf-b814-4300-bb38-8c093bed72f6" //"4779d88b-bc30-481b-bb2b-a2a21d60fdf1"
+        let apiKey = "ab254a10-ddc2-4d84-8f31-d3fab9d49520"
         
         // La signatureKey y la función de generación de firma debe usarse e implementarse en el servidor del comercio utilizando la función criptográfica SHA-512
         // solo con propósito de demostrar la funcionalidad, se implementará en el ejemplo
         // (bajo ninguna circunstancia debe exponerse la signatureKey y la función de firma desde la aplicación porque compromete la seguridad)
-        let signatureKey = "ibYl^ykGojrIWAGO*u=KaMv-6dOyYR&U"
+        let signatureKey = "eDpehY%YPYgsoludCSZhu*WLdmKBWfAo"
         let signature = generateSignature(transaction: transaction, apiKey: apiKey, signatureKey: signatureKey)
         
         // Referencie el objeto de autenticación
