@@ -80,6 +80,7 @@ class ViewController: UIViewController {
                 if (resultAccepted!) {
                     // Agregue el código según la experiencia del cliente para la autorización
                     self.showMessage(message: resultMessage!)
+                    self.synapButton.isEnabled=true
                 }
                 else {
                     // Agregue el código según la experiencia del cliente para la denegación

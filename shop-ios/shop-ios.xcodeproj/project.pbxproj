@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF3E3EE6238F80B900644781 /* SynapPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EE4238F80B500644781 /* SynapPay.framework */; };
-		AF3E3EE7238F80B900644781 /* SynapPay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EE4238F80B500644781 /* SynapPay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF3E3EF22390664000644781 /* SynapPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EF02390663E00644781 /* SynapPay.framework */; };
+		AF3E3EF32390664000644781 /* SynapPay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EF02390663E00644781 /* SynapPay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF83534A224AF23600AA7D21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF835349224AF23600AA7D21 /* AppDelegate.swift */; };
 		AF83534C224AF23600AA7D21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF83534B224AF23600AA7D21 /* ViewController.swift */; };
 		AF83534F224AF23600AA7D21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF83534D224AF23600AA7D21 /* Main.storyboard */; };
@@ -42,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AF3E3EE7238F80B900644781 /* SynapPay.framework in Embed Frameworks */,
+				AF3E3EF32390664000644781 /* SynapPay.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AF3E3EE4238F80B500644781 /* SynapPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SynapPay.framework; sourceTree = "<group>"; };
+		AF3E3EF02390663E00644781 /* SynapPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SynapPay.framework; sourceTree = "<group>"; };
 		AF835346224AF23600AA7D21 /* shop-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shop-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF835349224AF23600AA7D21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF83534B224AF23600AA7D21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF3E3EE6238F80B900644781 /* SynapPay.framework in Frameworks */,
+				AF3E3EF22390664000644781 /* SynapPay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 		AF835348224AF23600AA7D21 /* shop-ios */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E3EE4238F80B500644781 /* SynapPay.framework */,
+				AF3E3EF02390663E00644781 /* SynapPay.framework */,
 				AF835349224AF23600AA7D21 /* AppDelegate.swift */,
 				AF83534B224AF23600AA7D21 /* ViewController.swift */,
 				AF83534D224AF23600AA7D21 /* Main.storyboard */,
