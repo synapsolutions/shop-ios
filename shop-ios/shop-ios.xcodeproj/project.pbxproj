@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF3E3EE6238F80B900644781 /* SynapPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EE4238F80B500644781 /* SynapPay.framework */; };
+		AF3E3EE7238F80B900644781 /* SynapPay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EE4238F80B500644781 /* SynapPay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF83534A224AF23600AA7D21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF835349224AF23600AA7D21 /* AppDelegate.swift */; };
 		AF83534C224AF23600AA7D21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF83534B224AF23600AA7D21 /* ViewController.swift */; };
 		AF83534F224AF23600AA7D21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF83534D224AF23600AA7D21 /* Main.storyboard */; };
@@ -14,8 +16,6 @@
 		AF835354224AF23800AA7D21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF835352224AF23800AA7D21 /* LaunchScreen.storyboard */; };
 		AF83535F224AF23800AA7D21 /* shop_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF83535E224AF23800AA7D21 /* shop_iosTests.swift */; };
 		AF83536A224AF23800AA7D21 /* shop_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF835369224AF23800AA7D21 /* shop_iosUITests.swift */; };
-		AFD8D99822F3879C00E2C4DE /* SynapPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD8D99622F3879600E2C4DE /* SynapPay.framework */; };
-		AFD8D99922F3879C00E2C4DE /* SynapPay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFD8D99622F3879600E2C4DE /* SynapPay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AFD8D99922F3879C00E2C4DE /* SynapPay.framework in Embed Frameworks */,
+				AF3E3EE7238F80B900644781 /* SynapPay.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AF3E3EE4238F80B500644781 /* SynapPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SynapPay.framework; sourceTree = "<group>"; };
 		AF835346224AF23600AA7D21 /* shop-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shop-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF835349224AF23600AA7D21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF83534B224AF23600AA7D21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		AF835365224AF23800AA7D21 /* shop-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shop-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF835369224AF23800AA7D21 /* shop_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shop_iosUITests.swift; sourceTree = "<group>"; };
 		AF83536B224AF23800AA7D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AFD8D99622F3879600E2C4DE /* SynapPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SynapPay.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFD8D99822F3879C00E2C4DE /* SynapPay.framework in Frameworks */,
+				AF3E3EE6238F80B900644781 /* SynapPay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 		AF835348224AF23600AA7D21 /* shop-ios */ = {
 			isa = PBXGroup;
 			children = (
-				AFD8D99622F3879600E2C4DE /* SynapPay.framework */,
+				AF3E3EE4238F80B500644781 /* SynapPay.framework */,
 				AF835349224AF23600AA7D21 /* AppDelegate.swift */,
 				AF83534B224AF23600AA7D21 /* ViewController.swift */,
 				AF83534D224AF23600AA7D21 /* Main.storyboard */,
