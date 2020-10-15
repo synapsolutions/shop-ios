@@ -192,7 +192,10 @@ class ViewController: UIViewController {
         // Feature Card-Storage (Recordar Tarjeta)
         var features = SynapFeatures()
         var cardStorage = SynapCardStorage()
+        
+        // Omitir userIdentifier, si se trata de usuario anónimo
         cardStorage.userIdentifier = "javier.perez@synapsolutions.com"
+        
         features.cardStorage = cardStorage
         transaction.features = features
         
@@ -206,16 +209,25 @@ class ViewController: UIViewController {
         // solo con propósito de demostrar la funcionalidad, se implementará en el ejemplo
         // (bajo ninguna circunstancia debe exponerse la signatureKey y la función de firma desde la aplicación porque compromete la seguridad)
         let signatureKey = "eDpehY%YPYgsoludCSZhu*WLdmKBWfAo"
+        
         let signature = generateSignature(transaction: transaction, apiKey: apiKey, signatureKey: signatureKey)
+        
+        // El campo onBehalf es opcional y se usa cuando un comercio agrupa otros sub comercios
+        // la conexión con cada sub comercio se realiza con las credenciales del comercio agrupador
+        // y enviando el identificador del sub comercio en el campo onBehalf
+        //let onBehalf="cf747220-b471-4439-9130-d086d4ca83d4";
         
         // Referencie el objeto de autenticación
         var authenticator = SynapAuthenticator()
         
         // Seteo de identificador del comercio (apiKey)
-        authenticator.identifier = apiKey
+        authenticator.identifier = apiKey;
         
         // Seteo de firma, que permite verificar la integridad de la transacción
-        authenticator.signature = signature
+        authenticator.signature = signature;
+        
+        // Seteo de identificador de sub comercio (solo si es un subcomercio)
+        //authenticator.onBehalf = onBehalf;
         
         return authenticator
     }
