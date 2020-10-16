@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF3E3EF22390664000644781 /* SynapPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EF02390663E00644781 /* SynapPay.framework */; };
-		AF3E3EF32390664000644781 /* SynapPay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E3EF02390663E00644781 /* SynapPay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		633CD30B2538315C0090BD8B /* SynapPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633CD309253831570090BD8B /* SynapPay.framework */; };
+		633CD30C2538315C0090BD8B /* SynapPay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 633CD309253831570090BD8B /* SynapPay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF83534A224AF23600AA7D21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF835349224AF23600AA7D21 /* AppDelegate.swift */; };
 		AF83534C224AF23600AA7D21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF83534B224AF23600AA7D21 /* ViewController.swift */; };
 		AF83534F224AF23600AA7D21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF83534D224AF23600AA7D21 /* Main.storyboard */; };
@@ -36,13 +36,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AF83537B224AF32700AA7D21 /* Embed Frameworks */ = {
+		635525572507F58400A97B05 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AF3E3EF32390664000644781 /* SynapPay.framework in Embed Frameworks */,
+				633CD30C2538315C0090BD8B /* SynapPay.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AF3E3EF02390663E00644781 /* SynapPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SynapPay.framework; sourceTree = "<group>"; };
+		633CD309253831570090BD8B /* SynapPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SynapPay.framework; sourceTree = "<group>"; };
 		AF835346224AF23600AA7D21 /* shop-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shop-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF835349224AF23600AA7D21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF83534B224AF23600AA7D21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF3E3EF22390664000644781 /* SynapPay.framework in Frameworks */,
+				633CD30B2538315C0090BD8B /* SynapPay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 		AF835348224AF23600AA7D21 /* shop-ios */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E3EF02390663E00644781 /* SynapPay.framework */,
+				633CD309253831570090BD8B /* SynapPay.framework */,
 				AF835349224AF23600AA7D21 /* AppDelegate.swift */,
 				AF83534B224AF23600AA7D21 /* ViewController.swift */,
 				AF83534D224AF23600AA7D21 /* Main.storyboard */,
@@ -154,7 +154,7 @@
 				AF835342224AF23600AA7D21 /* Sources */,
 				AF835343224AF23600AA7D21 /* Frameworks */,
 				AF835344224AF23600AA7D21 /* Resources */,
-				AF83537B224AF32700AA7D21 /* Embed Frameworks */,
+				635525572507F58400A97B05 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -453,7 +453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9SBT68727H;
+				DEVELOPMENT_TEAM = 7FLG68SS9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -476,7 +476,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9SBT68727H;
+				DEVELOPMENT_TEAM = 7FLG68SS9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
