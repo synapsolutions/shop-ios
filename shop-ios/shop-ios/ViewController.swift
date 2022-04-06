@@ -170,13 +170,13 @@ class ViewController: UIViewController {
         // Seteo de los datos de lista de producto
         products.append(productItem)
         
-        // Referencie al objeto metadata
+        // Referencie al objeto metadata - Opcional
         var metadataItem = SynapMetadata()
         // Seteo de los datos de metadata
         metadataItem.name = "name1"
         metadataItem.value = "value1"
               
-        // Referencie al objeto lista de metadata
+        // Referencie al objeto lista de metadata - Opcional
         var metadataList = [SynapMetadata]();
         // Seteo de los datos de lista de metadata
         metadataList.append(metadataItem);
@@ -190,11 +190,11 @@ class ViewController: UIViewController {
         order.currency = currency
         order.products = products
         order.customer = customer
-        order.shipping = shipping
-        order.billing = billing
-        order.metadata = metadataList
+        order.shipping = shipping // Opcional
+        order.billing = billing // Opcional
+        order.metadata = metadataList // Opcional
                 
-        // Referencia al objeto features (Recordar Tarjeta) - Omitir cuando no se recuerde la tarjeta
+        // Referencia al objeto features (Recordar Tarjeta) - Opcional
         var features = SynapFeatures()
         var cardStorage = SynapCardStorage()
         cardStorage.userIdentifier = "javier.perez@synapsis.pe" // Puede ser cualquier identificador definido por el comercio
@@ -211,7 +211,7 @@ class ViewController: UIViewController {
         var transaction = SynapTransaction();
         // Seteo de los datos de transacción
         transaction.order = order;
-        transaction.features = features; // Omitir cuando no se recuerde la tarjeta
+        transaction.features = features; // Opcional
         transaction.settings = settings;
 
         return transaction;
