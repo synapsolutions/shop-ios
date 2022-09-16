@@ -9,18 +9,23 @@
 import UIKit
 import CommonCrypto
 import SynapPay
+import WebKit
 
 class ViewController: UIViewController {
     
     var paymentWidget: SynapPayButton!
     @IBOutlet weak var synapForm: UIView!
     @IBOutlet weak var synapButton: UIButton!
+    @IBOutlet weak var synapWebView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Oculte el contenedor del formulario de pago (View), hasta que se ejecute la acción de continuar al pago
         self.synapForm.isHidden = true
+        // self.synapForm.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+
+        self.synapWebView.isHidden = true
         
         // Oculte el botón de pago (Button), hasta que se ejecute la acción de continuar al pago
         self.synapButton.isHidden = true
@@ -35,6 +40,7 @@ class ViewController: UIViewController {
         
         // Crea el objeto del widget de pago
         self.paymentWidget = SynapPayButton.create(view: self.synapForm)
+        self.paymentWidget.setAuthenticationView(authenticationWebView: self.synapWebView)
         
         // Tema de fondo en la tarjeta (Light o Dark)
         // let theme = SynapLightTheme() // Fondo de tajeta claro
@@ -71,6 +77,7 @@ class ViewController: UIViewController {
             // Seteo de autenticación de seguridad y transacción
             authenticator: authenticator,
             transaction: transaction,
+            authenticationWebView: self.synapWebView,
             
             // Manejo de la respuesta
             success: {
@@ -141,7 +148,8 @@ class ViewController: UIViewController {
         customer.address = customerAddress
         
         // Seteo del email y teléfono
-        customer.email = "javier.perez@synapsis.pe"
+        // customer.email = "javier.perez@synapsis.pe"
+        customer.email = "review@review.com"
         customer.phone = "999888777"
 
         // Referencie al objeto documento del cliente
@@ -216,14 +224,13 @@ class ViewController: UIViewController {
 
         return transaction;
     }
-    
     func buildAuthenticator(_ transaction: SynapTransaction) -> SynapAuthenticator{
-        let apiKey = "ab254a10-ddc2-4d84-8f31-d3fab9d49520"
+        let apiKey = "4d78b7b1-52cd-418b-8532-94cf0a1d514c" // "ab254a10-ddc2-4d84-8f31-d3fab9d49520"
         
         // La signatureKey y la función de generación de firma debe usarse e implementarse en el servidor del comercio utilizando la función criptográfica SHA-512
         // solo con propósito de demostrar la funcionalidad, se implementará en el ejemplo
         // (bajo ninguna circunstancia debe exponerse la signatureKey y la función de firma desde la aplicación porque compromete la seguridad)
-        let signatureKey = "eDpehY%YPYgsoludCSZhu*WLdmKBWfAo"
+        let signatureKey = "x#lE6WT*4duyMODG*nIaD#Ma84qeS$ra" // "eDpehY%YPYgsoludCSZhu*WLdmKBWfAo"
         
         let signature = generateSignature(transaction: transaction, apiKey: apiKey, signatureKey: signatureKey)
         
