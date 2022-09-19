@@ -34,7 +34,7 @@
 		</data>
 		<key>Modules/SynapPay.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		ECh4wb9nz66k31KX8csJ1Pu4dw8=
+		jzylTBZkejG2a1qn6DbbRg9poOY=
 		</data>
 		<key>Modules/SynapPay.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Modules/SynapPay.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		YpHTD65nASzpRPxtRTbyvOq5qG8=
+		oS4ZyqARG/Co8jIGl1ylS1x/Lfw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -101,7 +101,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/kwpORqnzyCJbcpKMnKkzoki3ybxL5rkyBfuKAtixpU=
+			9lyTOWJk6bbzTTwaBahJ0UCzR0ucCqJ0wSHcf7D32+Y=
 			</data>
 		</dict>
 		<key>Modules/SynapPay.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -122,7 +122,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uU4CZLtxxr/6ticxH0wxWJjkK0mNG6q6UR1siBpWa0A=
+			YlbB1S3ZfLZx5Xu95sfdua1XzfgoOm1vj/diXemcVus=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

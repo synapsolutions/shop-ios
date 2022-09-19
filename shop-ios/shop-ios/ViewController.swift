@@ -21,10 +21,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Oculte el contenedor del formulario de pago (View), hasta que se ejecute la acción de continuar al pago
+        // Oculte el contenedor del formulario de pago (UIView), hasta que se ejecute la acción de continuar al pago
         self.synapForm.isHidden = true
-        // self.synapForm.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-
+        
+        // Oculte el contenedor del formulario de autenticación 3DS (WKWebView)
         self.synapWebView.isHidden = true
         
         // Oculte el botón de pago (Button), hasta que se ejecute la acción de continuar al pago
@@ -40,7 +40,9 @@ class ViewController: UIViewController {
         
         // Crea el objeto del widget de pago
         self.paymentWidget = SynapPayButton.create(view: self.synapForm)
-        self.paymentWidget.setAuthenticationView(authenticationWebView: self.synapWebView)
+        
+        // Setea el objeto webview de autenticación 3DS
+        self.paymentWidget.setAuthenticationView(webView: self.synapWebView)
         
         // Tema de fondo en la tarjeta (Light o Dark)
         // let theme = SynapLightTheme() // Fondo de tajeta claro
@@ -77,7 +79,7 @@ class ViewController: UIViewController {
             // Seteo de autenticación de seguridad y transacción
             authenticator: authenticator,
             transaction: transaction,
-            authenticationWebView: self.synapWebView,
+            webView: self.synapWebView, // Seteo de WebView de autenticación 3DS
             
             // Manejo de la respuesta
             success: {
