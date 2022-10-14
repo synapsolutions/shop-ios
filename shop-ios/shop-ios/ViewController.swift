@@ -9,18 +9,23 @@
 import UIKit
 import CommonCrypto
 import SynapPay
+import WebKit
 
 class ViewController: UIViewController {
     
     var paymentWidget: SynapPayButton!
     @IBOutlet weak var synapForm: UIView!
     @IBOutlet weak var synapButton: UIButton!
+    @IBOutlet weak var synapWebView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Oculte el contenedor del formulario de pago (View), hasta que se ejecute la acción de continuar al pago
+        // Oculte el contenedor del formulario de pago (UIView), hasta que se ejecute la acción de continuar al pago
         self.synapForm.isHidden = true
+        
+        // Oculte el contenedor del formulario de autenticación 3DS (WKWebView)
+        self.synapWebView.isHidden = true
         
         // Oculte el botón de pago (Button), hasta que se ejecute la acción de continuar al pago
         self.synapButton.isHidden = true
@@ -34,7 +39,10 @@ class ViewController: UIViewController {
         self.synapButton.isHidden = false
         
         // Crea el objeto del widget de pago
-        self.paymentWidget = SynapPayButton.create(view: self.synapForm)
+        self.paymentWidget = SynapPayButton.create(view: self.synapForm, view: self.synapWebView)
+        
+        // Setea el objeto webview de autenticación 3DS
+        // self.paymentWidget.setAuthenticationView(webView: self.synapWebView)
         
         // Tema de fondo en la tarjeta (Light o Dark)
         // let theme = SynapLightTheme() // Fondo de tajeta claro
@@ -71,6 +79,7 @@ class ViewController: UIViewController {
             // Seteo de autenticación de seguridad y transacción
             authenticator: authenticator,
             transaction: transaction,
+            webView: self.synapWebView, // Seteo de WebView de autenticación 3DS
             
             // Manejo de la respuesta
             success: {
@@ -141,7 +150,8 @@ class ViewController: UIViewController {
         customer.address = customerAddress
         
         // Seteo del email y teléfono
-        customer.email = "javier.perez@synapsis.pe"
+        // customer.email = "javier.perez@synapsis.pe"
+        customer.email = "review@review.com"
         customer.phone = "999888777"
 
         // Referencie al objeto documento del cliente
@@ -216,7 +226,6 @@ class ViewController: UIViewController {
 
         return transaction;
     }
-    
     func buildAuthenticator(_ transaction: SynapTransaction) -> SynapAuthenticator{
         let apiKey = "ab254a10-ddc2-4d84-8f31-d3fab9d49520"
         
