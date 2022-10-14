@@ -39,7 +39,6 @@ class ViewController: UIViewController {
         self.synapButton.isHidden = false
         
         // Crea el objeto del widget de pago
-        // self.paymentWidget = SynapPayButton.create(view: self.synapForm)
         self.paymentWidget = SynapPayButton.create(view: self.synapForm, view: self.synapWebView)
         
         // Setea el objeto webview de autenticación 3DS
