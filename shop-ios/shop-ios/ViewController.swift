@@ -40,10 +40,7 @@ class ViewController: UIViewController {
         
         // Crea el objeto del widget de pago
         self.paymentWidget = SynapPayButton.create(view: self.synapForm, view: self.synapWebView)
-        
-        // Setea el objeto webview de autenticación 3DS
-        // self.paymentWidget.setAuthenticationView(webView: self.synapWebView)
-        
+                
         // Tema de fondo en la tarjeta (Light o Dark)
         // let theme = SynapLightTheme() // Fondo de tajeta claro
         let theme = SynapDarkTheme() // Fondo de tarjeta oscuro
